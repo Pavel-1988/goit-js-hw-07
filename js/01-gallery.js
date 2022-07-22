@@ -26,7 +26,24 @@ function creatGallary(images) { // разметка
         .join('')
 }
 
+//======== вар 1
 
+
+// imagesGallary.addEventListener('click', createBigImage)
+
+// function createBigImage(event) {
+//      event.preventDefault();
+//      const instance = basicLightbox.create(`<img src="${original}">`)
+//     instance.show()
+// }
+
+
+
+
+
+//============ вар 2
+
+// let lightboxImage
 
 function createBigImage(img) {
      const instance = basicLightbox.create(`<img src="${img}">`)
