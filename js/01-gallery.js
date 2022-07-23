@@ -1,14 +1,9 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-
 const imagesGallary = document.querySelector('.gallery')
-const imagesMarkup = creatGallary(galleryItems);
-imagesGallary.insertAdjacentHTML('beforeend',imagesMarkup)
 
-// imagesGallary.addEventListener('click', onImagesGallaryClick)
-
-function creatGallary(images) { // разметка
+function createGallary(images) { 
     return galleryItems.map(({preview, original, description }) => {
         return `
      <div class="gallery__item">
@@ -23,60 +18,33 @@ function creatGallary(images) { // разметка
     </div>
     `;
     })
-        .join('')
-}
+    .join('')
+};
 
-//======== вар 1
-
-
-// imagesGallary.addEventListener('click', createBigImage)
-
-// function createBigImage(event) {
-//      event.preventDefault();
-//      const instance = basicLightbox.create(`<img src="${original}">`)
-//     instance.show()
-// }
-
-
-
-
-
-//============ вар 2
-
-// let lightboxImage
+const imagesMarkup = createGallary(galleryItems);
+imagesGallary.insertAdjacentHTML('beforeend',imagesMarkup)
 
 function createBigImage(img) {
      const instance = basicLightbox.create(`<img src="${img}">`)
-     instance.show()
+    instance.show()   
+
+     if (instance.visible()) {
+        window.addEventListener("keydown", onPressKeyESC);
+        }
+
+    function onPressKeyESC(e) {
+        if (e.code === "Escape") {
+        instance.close();
+        window.removeEventListener("keydown", onPressKeyESC);
+        }
+    }
 }
 
 function createModal(e) {
     e.preventDefault();
-    createBigImage(e.target.dataset.source);
-    // lightboxImage.show()
+    createBigImage(e.target.dataset.source);  
 };
 
 imagesGallary.addEventListener('click', createModal )
 
 
-
-// imagesGallary.addEventListener('click', createBigImage)
-
-// function createBigImage() {
-//      const instance = basicLightbox.create(`
-//     <img src="${original}">
-//     `)
-//     instance.show()
-// }
-
-
-
-
-
-
-// imagesGallary.addEventListener('click', function (e) {
-//     e.preventDefault();
-//     lightboxImage = createBigImage(e.target.dataset.source);
-//     lightboxImage.show()
-
-// });

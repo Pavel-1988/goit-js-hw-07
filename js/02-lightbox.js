@@ -1,12 +1,9 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-
 const сontainerGallary = document.querySelector('.gallery')
-const marcup = creatGallary(galleryItems);
-сontainerGallary.insertAdjacentHTML('beforeend', marcup)
 
-function creatGallary (galleryItems) {
+function createGallary (galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
         return `
         <a class="gallery__item" href="${original}">
@@ -21,6 +18,8 @@ function creatGallary (galleryItems) {
     })  .join('')
 }
 
+const markup = createGallary(galleryItems);
+сontainerGallary.insertAdjacentHTML('beforeend', markup)
 
 let options = {
     captionsData: 'alt',
@@ -29,10 +28,3 @@ let options = {
 
 let gallery = new SimpleLightbox('.gallery a',  options )
 gallery.on('show.simplelightbox');
-
-
-
-//=====робіить
-// let gallery = new SimpleLightbox('.gallery a', {
-//   captionsData: "alt",
-//   captionDelay: 250, })
